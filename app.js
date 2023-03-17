@@ -79,8 +79,7 @@ function setTimer(durationMilliseconds){
         if (milliseconds <= 1500) {
             let audioTimesUp = new Audio('data/oversimplified-alarm-clock-10s.mp3')
             audioTimesUp.loop = false
-            audioTimesUp.play() 
-            audioVolumeOut(audioTimesUp)
+            audioTimesUp.play()
         }
         if (milliseconds <= 1000) {
             console.log("Timer done!")
