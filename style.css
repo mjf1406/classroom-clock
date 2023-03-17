@@ -92,13 +92,13 @@ html, body {
     top: 0;
     margin-top: 25px;
     margin-right: 25px;
-    font-size: 2.5vw;
+    font-size: 3.5vw;
 }
 /* ===========
       Time
 ============= */
 .time {
-    font-size: 10vw;
+    font-size: 15rem;
     transition: var(--transition);
     animation: flexanimation 1s ease-out 1s infinite alternate backwards; 
 }
@@ -122,7 +122,7 @@ html, body {
     padding: 20px;
 }
 .timer {
-    font-size: 1vw;
+    font-size: 15rem;
     text-align: center;
     transition: var(--transition);
 }
