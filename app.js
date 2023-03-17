@@ -60,17 +60,19 @@ function setDate(){
     divDate.innerHTML = date
 }
 function setTimer(durationMilliseconds){
+    let breakButtonGroup = document.getElementById('break-button-group')
+    breakButtonGroup.style.display = 'none'
     let timerActive = localStorage.getItem('timer-active')
-    // TODO: This still does not work. Must be able to change timers with one active.
+    // TODO: This still does not work. Must be able to change timers with one active. "Solved" by removing the break buttons while a timer is active.
     if (timerActive == 'true') clearInterval() 
     let containerTimer = document.getElementById('container-timer')
     let divTime = document.getElementById('div-time')
     containerTimer.style.display = 'block'
-    divTime.style.fontSize = '4vw'
+    divTime.style.fontSize = '4rem'
     let divTimer = document.getElementById('div-timer')
     divTimer.innerHTML = convertMsToTime(durationMilliseconds)
     divTimer.name = durationMilliseconds
-    divTimer.style.fontSize = '10vw'
+    divTimer.style.fontSize = '15rem'
 
     function timer() {
         localStorage.setItem('timer-active', true)
@@ -79,14 +81,15 @@ function setTimer(durationMilliseconds){
         if (milliseconds <= 1500) {
             let audioTimesUp = new Audio('data/oversimplified-alarm-clock-10s.mp3')
             audioTimesUp.loop = false
-            audioTimesUp.play()
+            audioTimesUp.play() 
         }
         if (milliseconds <= 1000) {
             console.log("Timer done!")
             clearInterval(timerInterval)
             localStorage.setItem('timer-active', false)
             containerTimer.style.display = 'none'
-            divTime.style.fontSize = '10vw'
+            breakButtonGroup.style.display = 'inline-flex'
+            divTime.style.fontSize = '15rem'
             document.documentElement.className = 'theme-counting'
         }
         milliseconds = milliseconds - 1000
@@ -101,7 +104,6 @@ function setTimer(durationMilliseconds){
     buttonGroupTimer.parentNode.replaceChild(new_element, buttonGroupTimer);
 
     let buttonPlayPause = document.getElementById('play-pause')
-    // TODO: This still does not work completely. Currently can pause once and resume once
     buttonPlayPause.addEventListener('click', function() { 
         clearInterval(timerInterval)
         let timerActive = localStorage.getItem('timer-active')
@@ -128,7 +130,8 @@ function setTimer(durationMilliseconds){
         clearInterval(timerInterval)
         localStorage.setItem('timer-active', false)
         containerTimer.style.display = 'none'
-        divTime.style.fontSize = '10vw'
+        breakButtonGroup.style.display = 'inline-flex'
+        divTime.style.fontSize = '15rem'
         document.documentElement.className = 'theme-counting'
     })
     let buttonReset = document.getElementById('reset')
@@ -171,6 +174,7 @@ function setTimer(durationMilliseconds){
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
+
 }
 // <i class="fa-solid fa-pause"></i>
 function padTo2Digits(num) {
