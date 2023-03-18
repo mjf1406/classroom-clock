@@ -47,6 +47,7 @@ html, body {
     --background-color: #397097;
     --break-button-color: #2e5a79;
     --break-button-hover: #1b3446;
+    --break-button-not-allowed: rgba(46, 90, 121, 0.5);
     --footer-color: #35698d;
     --footer-a-color: #2a526f;
     --footer-a-hover: #99bed8;
@@ -57,11 +58,34 @@ html, body {
     --background-color: #ba4949;
     --break-button-color: #ad2d2d;
     --break-button-hover: rgb(103, 25, 25);
+    --break-button-not-allowed: rgba(173, 45, 45, 0.5);
     --footer-color: #b14242;
     --footer-a-color: #872c2c;
     --footer-a-hover: rgb(171, 153, 234);
     --button-font-color: black;
     --clock-background: #c86d6d;
+}
+.theme-timer-repeated {
+    --background-color: #743997;
+    --break-button-color: #5d2e79;
+    --break-button-hover: #512869;
+    --break-button-not-allowed: rgba(93, 46, 121, 0.5);
+    --footer-color: #6b348b;
+    --footer-a-color: #54296c;
+    --footer-a-hover: #391c49;
+    --button-font-color: #99bed8;
+    --clock-background: #508fbd;
+}
+.theme-timer-transition {
+    --background-color: #D3E000;
+    --break-button-color: #a9b300;
+    --break-button-hover: #7f8600;
+    --break-button-not-allowed: rgba(63, 67, 0, 0.1);
+    --footer-color: #beca00;
+    --footer-a-color: #7f8600;
+    --footer-a-hover: #545a00;
+    --button-font-color: #3f4300;
+    --clock-background: #508fbd;
 }
 /* ============= 
      Buttons
@@ -81,6 +105,22 @@ html, body {
 }
 .btn-group.socials a:hover {
     color: var(--footer-a-hover) !important;
+}
+.not-allowed i {
+    opacity: 50% !important;
+    cursor: not-allowed;
+}
+.not-allowed {
+    background-color: var(--break-button-color) !important;
+    color: var(--button-font-color) !important;
+    cursor: not-allowed !important;
+}
+#button-repeat-quantity {
+    cursor: not-allowed !important;
+}
+#button-repeat-quantity:hover {
+    cursor: not-allowed !important;
+    background-color: var(--break-button-color);
 }
 /* =========== 
      Date
