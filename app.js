@@ -19,6 +19,13 @@ function convertMsToTime(milliseconds) {
     return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds,)}`;
 }
 function setupListeners(){
+    let buttonOneMinutes = document.getElementById('button-1-mins')
+    buttonOneMinutes.addEventListener('click', function(){
+        document.documentElement.className = 'theme-timer'
+        setTimer(60000)
+    })
+
+    
     let buttonFiveMinutes = document.getElementById('button-5-mins')
     buttonFiveMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
