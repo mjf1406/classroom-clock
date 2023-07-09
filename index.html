@@ -1,210 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-counting">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="/public-portfolio/components/ProjectCard.js"></script>
+    <title>Classroom Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/7e282d14cd.js" crossorigin="anonymous"></script>
-    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-    <link rel="stylesheet" href="tailwind.css">
-    <title>Michael J. Fitzgerald</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@200&family=Fredoka+One&family=Quicksand:wght@300;400&family=Rubik+Glitch&family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
-<header>
-    <nav class="fixed top-0 z-10 w-full h-16 bg-gray-800">
-        <div class="flex-row items-center justify-start hidden h-full pl-5 space-x-4 sm:flex">
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md hover:bg-cyan-900" name="nav-item" href="#nav-top" id="nav-item-introduction"><i class="fa-regular fa-id-card"></i> Introduction</a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md hover:bg-cyan-900" name="nav-item" href="#nav-projects" id="nav-item-teaching-philosophy"><i class="fa-solid fa-diagram-project"></i> Projects</a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md hover:bg-cyan-900" name="nav-item" href="#nav-teaching-philosophy" id="nav-item-teaching-philosophy"><i class="fa-solid fa-brain"></i> Teaching Philosophy</a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md hover:bg-cyan-900" name="nav-item" href="#nav-story" id="nav-item-story"><i class="fa-solid fa-book"></i> My Story</a>
-        </div>
-        <div class="flex flex-row items-center justify-start h-full pl-5 space-x-4 sm:hidden">
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md" name="nav-item" href="#nav-top" id="nav-item-introduction"><i class="fa-regular fa-id-card"></i></a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md" name="nav-item" href="#nav-projects" id="nav-item-teaching-philosophy"><i class="fa-solid fa-diagram-project"></i></a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md" name="nav-item" href="#nav-teaching-philosophy" id="nav-item-teaching-philosophy"><i class="fa-solid fa-brain"></i></a>
-            <a class="px-3 py-2 text-sm font-medium text-center rounded-md" name="nav-item" href="#nav-story" id="nav-item-story"><i class="fa-solid fa-book"></i></a>
-        </div>
-    </nav>
-</header>
 <body>
-    <div class="flex flex-col items-center justify-center m-5 mt-24">
-        <div class="flex flex-col items-center justify-center gap-3 mb-10">
-            <div class="w-full text-6xl text-center scroll-m-24" id="nav-top">Michael J. Fitzgerald</div>
-            <div class="w-full text-4xl text-center ">
-                <a href="https://github.com/mjf1406"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/mfitz06/"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-            <div class="max-w-2xl text-2xl text-center">Elementary School Teacher, Web Developer, Programmer, Translator (Mandarin <i class="fa-solid fa-arrow-right-long"></i> English), D&D Forever DM, Cyclist</div>
-            <div class="max-w-3xl text-xl text-center">Master of Arts in Elementary Teaching - 4.0 GPA</div>
-            <div class="max-w-3xl text-base text-center">Highly accomplished teacher with nearly a decade of experience teaching ESL, math, science, and language arts who has leveraged in-class games for engaging lessons, and who has utilized Python, advanced Excel techniques, and other tools to gain valuable insights into students and their behaviors all in order to better educate them.</div>
+    <div class="bg-color"></div>
+    <div class="main clock counting" id="main">
+        <div class="date" id="div-date"></div>
+        <div class="time" id="div-time"></div>
+        <div class="btn-group" role="group" aria-label="Basic example" id="break-button-group">
+            <button type="button" class="btn btn-primary btn-lg" id="button-5-mins">5 Min.</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button-10-mins">10 Min.</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button-15-mins">15 Min.</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button-20-mins">20 Min.</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button-25-mins">25 Min.</button>
+            <button type="button" class="btn btn-primary btn-lg" id="button-30-mins">30 Min.</button>
         </div>
-        <div class="flex flex-col items-center justify-center gap-10 max-w-7xl">
-            <div class="text-4xl scroll-m-24" id="nav-projects">Projects</div>
-            <div class="flex flex-row flex-wrap items-stretch justify-center gap-5">
-                <section class="p-3 border border-gray-200 bg-cyan-950 rounded-xl w-80 sm:w-96 dark:border-gray-700">
-                    <div class="flex flex-col items-center justify-center gap-2">
-                        <div class="text-3xl text-center">Various Classroom Tools</div>
-                        <div class="text-sm text-center"><i class="fa-solid fa-code"></i> Live!</div>
-                        <div class="text-2xl text-center">
-                            <a href="https://github.com/mjf1406/various-classroom-tools"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://mjf1406.github.io/various-classroom-tools/index.html"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
-                        <div class="text-base">A mobile-first webapp with a suite tools related to randomly picking students in various ways. This is meant for the teacher only and is not intended to be shared with parents or students.</div>
-                        <div class="p-2 text-sm border rounded opacity-50 border-cyan-200 w-100">I use this to randomly determine the line order for dismissal. The app is great for this because it ensures that every student goes first and last at least once before anyone goes first or last again. I also let the student who was last for the previous dismissal push the Sort button. Many students enthusiastically look forward to this.</div>
-                    </div>
-                </section>
-                <section class="p-3 border border-gray-200 bg-cyan-950 rounded-xl w-80 sm:w-96 dark:border-gray-700">
-                    <div class="flex flex-col items-center justify-center gap-2">
-                        <div class="text-3xl text-center">Classroom Clock</div>
-                        <div class="text-sm text-center"><i class="fa-solid fa-code"></i> Live!</div>
-                        <div class="text-2xl text-center">
-                            <a href="https://github.com/mjf1406/classroom-clock"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://mjf1406.github.io/classroom-clock/index.html"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
-                        <div class="text-base">A simple website that displays a large clock for viewing along with 6 buttons to quickly start timers of various lengths. Additionally, timers may be repeated to support centers rotations.</div>
-                        <div class="p-2 text-sm border rounded opacity-50 border-cyan-200 w-100">I use this to quickly set timers for various activities in class. This helps diverse learners immensely by 'externalizing their frontal lobe'. I also use it for centers whenever we do those. The app is great because the students quickly learn to recognize the different sounds and their meanings. Not only this, but each timer has its own color, so students can quickly know what they should be doing just based on the background color at a <dfn><abbr title="One of my favorite pleonasms 😄">quick glance</abbr></dfn>.</div>
-                    </div>
-                </section>
-                <section class="p-3 border border-gray-200 bg-cyan-950 rounded-xl w-80 sm:w-96 dark:border-gray-700">
-                    <div class="flex flex-col items-center justify-center gap-2">
-                        <div class="text-3xl text-center">MagniText</div>
-                        <div class="text-sm text-center"><i class="fa-solid fa-code"></i> Live!</div>
-                        <div class="text-2xl text-center">
-                            <a href="https://github.com/mjf1406/magni-text"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://mjf1406.github.io/magni-text/index.html"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
-                        <div class="text-base">A streamlined website designed to responsively maximize the font size of any input message, ensuring optimal utilization of the entire viewport. This tool is especially useful for displaying messages on a phone, enabling easy readability.</div>
-                        <div class="p-2 text-sm border rounded opacity-50 border-cyan-200 w-100">I use this to show students a quick message that does not require a reply during silent work. The messages are easy to read because they are blown up to take up my phone's entire screen.</div>
-                    </div>
-                </section>
-                <section class="p-3 border border-gray-200 bg-cyan-950 rounded-xl w-80 sm:w-96 dark:border-gray-700">
-                    <div class="flex flex-col items-center justify-center gap-2 opacity-30">
-                        <div class="text-3xl text-center">TangibleTalks</div>
-                        <div class="text-sm text-center"><i class="fa-solid fa-helmet-safety"></i> Under Construction</div>
-                        <div class="text-2xl text-center">
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
-                            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                        </div>
-                        <div class="text-base">A mobile-first local chat app. Different users get saved using a unique color-icon combination and their name to be easily identifiable. Chat history is also kept, just like any other chat app, although because it does not require the internet (once it is loaded), the history is limited based on local device storage limitations.</div>
-                        <div class="p-2 text-sm border rounded opacity-50 border-cyan-200 w-100">I use this to communicate with one or more students simultaneously during silent work. I type a message using the same <dfn><abbr title="Always a cute monkey 🐒, my favorite animal!">icon</abbr></dfn> and <dfn><abbr title="Always turquoise, my favorite color!">color</abbr></dfn>, then hand them the phone. They select their icon-color combination, then reply.</div>
-                    </div>
-                </section>
-            </div>
+        <!-- <button id="button-custom-timer" class="btn btn-primary btn-lg">Custom Timer</button> -->
+        <div class="container-timer" id="container-timer" style="display: none;">
+            <div class="timer" id="div-timer"></div>
+            <div class="btn-group time-button-group" role="group" aria-label="" id="timer-button-group">
+                <button id="play-pause" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Play/Pause"><span class="play-pause" id="play-pause"><i class="fa-solid fa-pause"></i></span></button>
+                &nbsp;
+                &nbsp;
+                <button id="plus-one-minute" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Plus 1 Minute"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-6"></i><i class="fa-solid fa-0"></i></button>
+                <button id="minus-one-minute" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Minus 1 Minute"><i class="fa-solid fa-minus"></i><i class="fa-solid fa-6"></i><i class="fa-solid fa-0"></i></button>
+                &nbsp;
+                &nbsp;
+                <button id="plus-10-seconds" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Plus 10 Seconds"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-1"></i><i class="fa-solid fa-0"></i></button>
+                <button id="minus-10-seconds" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Minus 10 Seconds"><i class="fa-solid fa-minus"></i><i class="fa-solid fa-1"></i><i class="fa-solid fa-0"></i></button>
+                &nbsp;
+                &nbsp;
+                <button id="reset" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Reset"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                &nbsp;
+                &nbsp;
+                <button id="repeat-minus" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Repeat"><i class="fa-solid fa-minus"></i><i class="fa-solid fa-repeat"></i></button>
+                <button id="button-repeat-quantity" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Repeat"><span id="repeat-quantity" disabled>0</span></button>
+                <button id="repeat" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Repeat"><i class="fa-solid fa-plus"></i><i class="fa-solid fa-repeat"></i></button>
+                <button id="set-repeat" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Set Repeat Cycle"><i class="fa-solid fa-square-check"></i></button>
+                &nbsp;
+                &nbsp;
+                <button id="cancel" type="button" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Cancel"><i class="fa-solid fa-square-xmark"></i></button>
 
-            <div class="text-4xl text-center scroll-m-24" id="nav-teaching-philosophy">Teaching Philosophy</div>
-            <div class="flex flex-row flex-wrap items-stretch justify-center gap-5">
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/mindfullness.avif" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mindfulness</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/compassion.webp" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Compassion & Empathy</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/skills-for-success.jpg" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Skills for Success</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/zpd.jpg" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">The ZPD & <br> Comprehensible Input</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/inclusivity.jpg" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Inclusivity & Community</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/patience.jpg" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Patience & Kindness</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img class="p-3 bg-white rounded-t-lg" src="/public-portfolio/images/personalized-learning.jpg" width="400" height="400" alt="" />
-                    <div class="p-5">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Personalized Learning</h5>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                </div>
             </div>
-
-            <div class="text-4xl scroll-m-24" id="nav-story">Story</div>
-            <!-- TODO: Add descriptions of each job -->
-            <div class="flex flex-col items-center justify-center max-w-2xl">
-                <ol class="relative border-l border-gray-200 dark:border-gray-700">   
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-blue-500 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">December 2023</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">American College of Education | Master of Arts in Elementary Teaching</h3>
-                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Graduated from ACE with a 4.0 GPA</p>
-                    </li> 
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">February 2023 | Seoul, South Korea</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Maple Bear Songpa | English Language Arts Teacher -- 4th Grade Team Lead</h3>
-                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>    
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-blue-500 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April 2021</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">American College of Education | Master of Arts in Elementary Teaching</h3>
-                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Commence studying for my master's degree while working a full-time teaching position.</p>
-                    </li>            
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 2022 | Seoul, South Korea</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Maple Bear Songpa | English Language Arts Teacher</h3>
-                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 2021 - December 2021 | Lake Zurich, IL, USA</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Dovenmuehle Mortgage, Inc. | Acquisition Analyst</h3>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April 2018 - June 2021 | Remote </time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Yeehe | Chinese to English Translator</h3>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">December 2015 - June 2020 | Seoul, South Korea</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Avalon English | English Teacher</h3>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-yellow-400 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 2013 - June 2015 | Beijing China</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Better English | English Teacher</h3>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Under construction...</p>
-                    </li>
-                    <li class="mb-8 ml-4">
-                        <div class="absolute w-3 h-3 bg-blue-500 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">December 2008</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Carthage College | Bachelor of Arts in Economics</h3>
-                        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Graduated from Carthage College with an extra sememster due to study abroad scheduling issues.</p>
-                    </li> 
-                </ol>
+        </div>
+        <div class="footer">
+            Made with <i class="fa fa-heart pulse" aria-hidden="true"></i> by Michael Fitzgerald. 
+            <div class="btn-group socials" role="group" aria-label="">
+                <button type="button" class="btn btn-link btn-class btn-sm" data-toggle="tooltip" data-placement="top" title="LinkedIn"> <a href="https://www.linkedin.com/in/mfitz06/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>  </button>
+                <button type="button" class="btn btn-link btn-class btn-sm" data-toggle="tooltip" data-placement="top" title="Github"> <a href="https://github.com/mjf1406" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a></button>
+                <button type="button" class="btn btn-link btn-class btn-sm" data-toggle="tooltip" data-placement="top" title="Portfolio"> <a href="https://mjf1406.github.io/portfolio/index.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-id-card"></i></a></button>
+                <button type="button" class="btn btn-link btn-class btn-sm" data-toggle="tooltip" data-placement="top" title="Open Source Code"> <a href="https://github.com/mjf1406/classroom-clock" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i></a></button>
             </div>
         </div>
     </div>
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
-<script src="app.js"></script>
+<script>
+    setInterval(setTime, 1000)
+    setTime()
+    setDate()
+    setupListeners()
+</script>
 </html>
