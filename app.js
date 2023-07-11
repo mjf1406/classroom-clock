@@ -1,9 +1,12 @@
 let timerActive
 
+const SECOND = 1000
 const MINUTE = 60000
 const TEN_SECONDS = 10000
 const TRANSITION_DURATION = 30000
 const TIMER_DONE_AUDIO = 10000
+const divSchedule = document.getElementById('schedule')
+const classEndTImes = {"ACI 2+":1700, "ACI 4+":1900}
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -22,37 +25,49 @@ function setupListeners(){
     let buttonFiveMinutes = document.getElementById('button-5-mins')
     buttonFiveMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(300000)
+        let timerDuration = MINUTE * 5
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     let buttonTenMinutes = document.getElementById('button-10-mins')
     buttonTenMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(600000)
+        let timerDuration = MINUTE * 10
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     let buttonFifteenMinutes = document.getElementById('button-15-mins')
     buttonFifteenMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(900000)
+        let timerDuration = MINUTE * 15
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     let buttonTwentyMinutes = document.getElementById('button-20-mins')
     buttonTwentyMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(1200000)
+        let timerDuration = MINUTE * 20
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     let buttonTwentyFiveMinutes = document.getElementById('button-25-mins')
     buttonTwentyFiveMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(1500000)
+        let timerDuration = MINUTE * 25
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     let buttonThirtyMinutes = document.getElementById('button-30-mins')
     buttonThirtyMinutes.addEventListener('click', function(){
         document.documentElement.className = 'theme-timer'
-        setTimer(1800000)
+        let timerDuration = MINUTE * 30
+        setEndTime(timerDuration)
+        setTimer(timerDuration)
     })
 
     // let buttonCustomTimer = document.getElementById('button-custom-timer')
@@ -65,6 +80,13 @@ function setTime(){
     let time = new Date().toLocaleTimeString(locale, undefined)
     let divTime = document.getElementById('div-time')
     divTime.innerHTML = time
+}
+function setEndTime(timerDuration){
+    let locale = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
+    let time = new Date();
+    let newTime = new Date(time.getTime() + timerDuration); // Adds the timerDuration to the current date
+    let divTimerEnd = document.getElementById('div-time-end');
+    divTimerEnd.innerHTML = newTime.toLocaleTimeString(locale, undefined);
 }
 function setDate(){
     let locale = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
@@ -144,6 +166,8 @@ function setTimer(durationMilliseconds){
         if (timerActive == 'false') { 
             localStorage.setItem('timer-active', true)
             let divTimer = document.getElementById('div-timer')
+            let milliseconds = parseInt(divTimer.name)
+            setEndTime(milliseconds)
             divTimer.style.opacity = '100%'
             this.innerHTML = ``
             this.innerHTML = `<i class="fa-solid fa-pause"></i>`
@@ -165,6 +189,7 @@ function setTimer(durationMilliseconds){
         let duration = parseInt(parseInt(localStorage.getItem('duration')))
         duration += MINUTE
         localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
@@ -177,6 +202,7 @@ function setTimer(durationMilliseconds){
         let duration = parseInt(localStorage.getItem('duration'))
         duration -= MINUTE
         localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
@@ -188,6 +214,7 @@ function setTimer(durationMilliseconds){
         let duration = parseInt(localStorage.getItem('duration'))
         duration += TEN_SECONDS
         localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
@@ -200,12 +227,39 @@ function setTimer(durationMilliseconds){
         let duration = parseInt(localStorage.getItem('duration'))
         duration -= TEN_SECONDS
         localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
+        divTimer.innerHTML = convertMsToTime(milliseconds)
+        divTimer.name = milliseconds
+    })
+    let buttonPlusOneSeconds = document.getElementById('plus-1-seconds')
+    buttonPlusOneSeconds.addEventListener('click', function(){
+        let divTimer = document.getElementById('div-timer')
+        let milliseconds = parseInt(divTimer.name)
+        milliseconds = milliseconds + SECOND
+        let duration = parseInt(localStorage.getItem('duration'))
+        duration += TEN_SECONDS
+        localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
+        divTimer.innerHTML = convertMsToTime(milliseconds)
+        divTimer.name = milliseconds
+    })
+    let buttonMinusOneSeconds = document.getElementById('minus-1-seconds')
+    buttonMinusOneSeconds.addEventListener('click', function(){
+        let divTimer = document.getElementById('div-timer')
+        let milliseconds = parseInt(divTimer.name)
+        milliseconds = milliseconds - SECOND
+        if (milliseconds <= 0) return
+        let duration = parseInt(localStorage.getItem('duration'))
+        duration -= TEN_SECONDS
+        localStorage.setItem('duration', duration)
+        setEndTime(milliseconds)
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
     let buttonReset = document.getElementById('reset')
     buttonReset.addEventListener('click', function(){
         milliseconds = durationMilliseconds
+        setEndTime(milliseconds)
         divTimer.innerHTML = convertMsToTime(milliseconds)
         divTimer.name = milliseconds
     })
@@ -373,4 +427,92 @@ function setTimer(durationMilliseconds){
         buttonReset.disabled = false
         buttonSetRepeatCycle.disabled = false
     }
+}
+async function populateSchedule(){
+    let locale = navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
+    fetch('SCHEDULE.xlsx')
+        .then(response => response.arrayBuffer())
+        .then(data => {
+            // if(typeof require !== 'undefined') XLSX = require('xlsx');
+            let workbook = XLSX.read(new Uint8Array(data), {type:'array'});
+            let worksheet = workbook.Sheets[workbook.SheetNames[0]];
+            let jsonData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+            let transformedData = jsonData.map(convertToDates)
+
+            let scheduledDate = transformedData[1][2]
+            scheduledDate.setHours(0,0,0,0)
+            let todayDate = new Date()
+            todayDate.setHours(0,0,0,0)
+
+            if (scheduledDate.getTime() === todayDate.getTime()) {
+                const table = document.createElement('table')
+                table.classList.add('styled-table')
+                const thead = document.createElement('thead')
+                const tbody = document.createElement('tbody')
+                const thClass = document.createElement('th')
+                const thStart = document.createElement('th')
+                const thEnd = document.createElement('th')
+                const thActivity = document.createElement('th')
+
+                thClass.innerText = 'Class'
+                thStart.innerText = 'Start Time'
+                thEnd.innerText = 'End Time'
+                thActivity.innerText = 'Activity'
+
+                thead.appendChild(thClass)
+                thead.appendChild(thStart)
+                thead.appendChild(thEnd)
+                thead.appendChild(thActivity)
+                table.appendChild(thead)
+
+                divSchedule.appendChild(table)
+
+                for (let index = 0; index < transformedData.length; index++) {
+                    const element = transformedData[index];
+                    if (element[0] == 'CLASS') continue
+                    let className = element[0]
+                    let startTime = new Date(element[2]).toLocaleTimeString(locale, undefined)
+                    let endTime = new Date(element[3]).toLocaleTimeString(locale, undefined)
+                    let activity = element[4]
+
+                    const tr = document.createElement('tr')
+                    const tdClass = document.createElement('td')
+                    const tdStart = document.createElement('td')
+                    const tdEnd = document.createElement('td')
+                    const tdActivity = document.createElement('td')
+
+                    tdClass.innerText = className 
+                    tdStart.innerText = startTime
+                    tdEnd.innerText = endTime
+                    tdActivity.innerText = activity
+
+                    tr.appendChild(tdClass)
+                    tr.appendChild(tdStart)
+                    tr.appendChild(tdEnd)
+                    tr.appendChild(tdActivity)
+                                 
+                    tbody.appendChild(tr)
+                }
+
+                table.appendChild(tbody)
+            }
+        })
+        .catch(err => console.error('An error occurred', err));
+}
+function convertToDates(arr) {
+    if (arr[0] != 'CLASS' || arr[1].length == 0) {
+        let dateParts = arr[5].split("/");
+        let year = dateParts[2].length === 2 ? "20" + dateParts[2] : dateParts[2]; // If year is in 2 digits, prepend '20'
+        // Start Time
+        let startHours = parseInt(arr[2].substr(0, 2), 10);
+        let startMinutes = parseInt(arr[2].substr(2, 2), 10);
+        let startDate = new Date(year, dateParts[0] - 1, dateParts[1], startHours, startMinutes);
+        arr[2] = startDate;
+        // End Time
+        let endHours = parseInt(arr[3].substr(0, 2), 10);
+        let endMinutes = parseInt(arr[3].substr(2, 2), 10);
+        let endDate = new Date(year, dateParts[0] - 1, dateParts[1], endHours, endMinutes);
+        arr[3] = endDate; 
+    }
+    return arr;
 }

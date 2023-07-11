@@ -1,12 +1,6 @@
-/* font-family: 'Cairo Play', cursive; */
-/* font-family: 'Fredoka One', cursive; */
-/* font-family: 'Quicksand', sans-serif; */
-/* font-family: 'Rubik', sans-serif; */
-/* font-family: 'Rubik Glitch', cursive; */
 :root {
     --transition: all ease 3s;
 }
-
 html, body {
     padding: 0;
     margin: 0;
@@ -188,6 +182,56 @@ html, body {
     animation: beat 0.75s infinite alternate;
 	transform-origin: center;
 }
+
+.square {
+    background-color: var(--break-button-color);
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 120px;
+    left: 120px;
+}
+.circle {
+    background-color: var(--break-button-color);
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50%;
+    top: 220px;
+    left: 220px;
+}
+.triangle {
+    width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 100px solid var(--break-button-color);
+    position: absolute;
+    top: 320px;
+    left: 320px;
+}
+
+.gem {
+    border-style: solid;
+    border-color: transparent transparent var(--break-button-color) transparent;
+    border-width: 0 25px 25px 25px;
+    height: 0;
+    width: 50px;
+    box-sizing: content-box;
+    position: relative;
+    margin: 20px 0 50px 0;
+}
+.gem:after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: var(--break-button-color) transparent transparent transparent;
+    border-width: 70px 50px 0 50px;
+}
 /* =================
       Animations
 ================== */
@@ -202,4 +246,35 @@ html, body {
 @keyframes fadeOut {
     100% { opacity: 1; }
     0% { opacity: 0; }
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
 }
